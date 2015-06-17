@@ -1,19 +1,10 @@
-/*
-To customize the look and feel of Ionic, you can override the variables
-in ionic's _variables.scss file.
-
-For example, you might change some of the default colors:
-
-$light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
-$calm:                            #11c1f3 !default;
-$balanced:                        #33cd5f !default;
-$energized:                       #ffc900 !default;
-$assertive:                       #ef473a !default;
-$royal:                           #886aea !default;
-$dark:                            #444 !default;
-*/
+// Override variables
+$light: #eee;
+$lighter: #fff;
+$darker: #363636;
+$assertive: #B33F33;
+$balanced: #70AB23;
+$positive: #366091;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -21,3 +12,106 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+// Dark theme for backgrounds.
+.view, .pane, .modal {
+  background: $darker;
+}
+
+// Style the form inside of the footer bar
+.bar-search {
+  padding: 0;
+
+  form {
+    display: block;
+    width: 100%;
+  }
+
+  .item {
+    padding: 3.75px 10px;
+  }
+}
+
+// Make the item-dark style default by extending it back on top of item
+.item {
+  @extend .item-dark;
+}
+
+//
+.item-reorder .button.icon {
+  color: $light;
+}
+
+// Make inputs nicer on dark
+.item-input {
+
+  input {
+    margin-right: 30px;
+    padding-left: 5px;
+    background: $darker;
+    color: $light;
+  }
+  .input-label {
+    color: $light;
+  }
+}
+.item-input-wrapper {
+  background: $darker;
+
+  input {
+    color: $lighter;
+  }
+}
+
+// Make toggler nicer on dark
+.toggle .track {
+  background-color: $dark;
+  border-color: $darker;
+}
+.toggle input:checked + .track {
+  background-color: $positive;
+  border-color: $positive;
+}
+
+// Remove a bottom border
+.tabs-striped .tabs {
+  border-bottom: 0;
+}
+
+// Allow the tabs to be as wide as needed
+.tab-item {
+  max-width: none;
+}
+
+// Styles for the quote component
+.quote {
+  background: $darker;
+  padding: 5px;
+  border-radius: 4px;
+  display: block;
+  position: absolute;
+  top: 1px;
+  right: 16px;
+  text-align: center;
+  width: 90px;
+  height: 50px;
+  color: $lighter;
+
+  .spinner svg {
+    margin-top: 6px;
+  }
+
+  &.positive {
+    background: $balanced;
+    color: $light;
+  }
+
+  &.negative {
+    background: $assertive;
+    color: $light;
+  }
+
+  .quote-change {
+    font-size: 0.8em;
+    color: $light;
+  }
+}
