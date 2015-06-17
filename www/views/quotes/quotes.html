@@ -1,0 +1,37 @@
+<ion-view view-title="Market Quotes">
+  <!-- Add a nav button to the primary location -->
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ng-click="state.reorder = !state.reorder">Reorder</button>
+  </ion-nav-buttons>
+  <!-- ionContent is used to wrap scrollable content -->
+  <ion-content>
+    <!-- ionRefresher activates when the user pulls down and calls getQuotes() -->
+    <ion-refresher on-refresh="getQuotes()"></ion-refresher>
+    <!-- ionList allows us to make a complex list with swipe buttons, reodering, and more -->
+    <ion-list show-reorder="state.reorder">
+      <!-- Repeat over each quote, to display the current details and name -->
+      <ion-item ng-repeat="stock in quotes" class="item-dark">
+        <div class="quote" ng-class="quoteClass(stock)">
+          <div class="quote-price">{{stock.LastTradePriceOnly | currency:'$'}}</div>
+          <div class="quote-change">{{stock.Change}}</div>
+        </div>
+        {{stock.symbol}}
+        <!-- Option and reorder button for list items -->
+        <ion-option-button class="button-assertive" ng-click="remove($index)">Remove</ion-option-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="reorder(stock, $fromIndex, $toIndex)">
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <!-- Footer sits above the tabs and sticks -->
+  <ion-footer-bar class="bar-search">
+    <!-- Form to input a quote to add to the list -->
+    <form ng-submit="add()" class="list">
+      <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="search" placeholder="Symbol" ng-model="form.query">
+          </label>
+          <input type="submit" class="button button-small button-positive" value="Add" />
+      </div>
+    </form>
+  </ion-footer-bar>
+</ion-view>
