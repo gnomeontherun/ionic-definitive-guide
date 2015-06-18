@@ -1,0 +1,29 @@
+<!-- Modals require a special ionModalView wrapper -->
+<ion-modal-view>
+  <!-- Use Angular form to have automatic validation -->
+  <form name="addQuote">
+    <!-- Add an ionHeaderBar with buttons and title -->
+    <ion-header-bar class="bar-balanced">
+      <button class="button button-clear" ng-click="closeModal()">Cancel</button>
+      <h1 class="title">Add Stock</h1>
+      <button class="button button-clear" ng-click="addStock(item)" ng-disabled="addQuote.$invalid">Save</button>
+    </ion-header-bar>
+    <ion-content>
+      <!-- Use Ionic's CSS list and form classes to format forms -->
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Symbol</span>
+          <input type="text" autocorrect="off" autocapitalize="off" ng-model="item.symbol" required />
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Quantity</span>
+          <input type="number" autocorrect="off" autocapitalize="off" ng-model="item.quantity" required />
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Price</span>
+          <input type="number" autocorrect="off" autocapitalize="off" ng-model="item.price" required />
+        </label>
+      </div>
+    </ion-content>
+  </form>
+</ion-modal-view>

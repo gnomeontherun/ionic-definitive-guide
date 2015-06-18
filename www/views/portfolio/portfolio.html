@@ -1,0 +1,29 @@
+<ion-view view-title="My Portfolio">
+  <!-- Add buttons to both primary and secondary sides of the navbar -->
+  <ion-nav-buttons side="primary">
+    <button class="button button-clear" ng-click="openModal()">Add</button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="secondary">
+    <button class="button button-clear" ng-click="state.remove = !state.remove">Edit</button>
+  </ion-nav-buttons>
+  <ion-content>
+    <!-- Use a list to display the list of stocks in portfolio -->
+    <ion-list show-delete="state.remove">
+      <!-- Repeat over each stock in the portfolio and display relevant data -->
+      <ion-item ng-repeat="stock in portfolio" class="item-dark item-text-wrap">
+        {{stock.symbol}} ({{stock.quantity}} @ {{stock.price | currency}})
+        <div class="quote" ng-class="quoteClass(stock)" ng-if="quotes[stock.symbol]">
+          <!-- These bindings calculate the current value and gain/loss of the stock -->
+          <div class="quote-price">{{getCurrentValue(stock) | currency:'$'}}</div>
+          <div class="quote-change">{{getChange(stock) | currency}}</div>
+        </div>
+        <!-- Use an ionSpinner to display while the stock price is loaded -->
+        <div class="quote" ng-if="!quotes[stock.symbol]">
+          <ion-spinner icon="lines"></ion-spinner>
+        </div>
+        <!-- Delete button allows the item to be removed -->
+        <ion-delete-button class="ion-minus-circled" ng-click="remove($index)"></ion-delete-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
