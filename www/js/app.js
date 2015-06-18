@@ -1,5 +1,9 @@
 angular.module('App', ['ionic'])
 
+.config(function($urlRouterProvider) {
+  $urlRouterProvider.otherwise('/tabs/quotes');
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
